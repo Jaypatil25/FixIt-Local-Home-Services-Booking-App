@@ -3,7 +3,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
-import WelcomeScreen from "../modules/welcome/WelcomeScreen";
 import CategoriesScreen from "../modules/categories/CategoriesScreen";
 import ProvidersScreen from "../modules/providers/ProvidersScreen";
 import BookingForm from "../modules/booking/BookingForm";
@@ -21,6 +20,7 @@ function BottomTabs() {
         headerShown: false,
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
+
           if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'History') {
@@ -30,9 +30,10 @@ function BottomTabs() {
           } else if (route.name === 'Dashboard') {
             iconName = focused ? 'grid' : 'grid-outline';
           }
+
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: '#3498db',
+        tabBarActiveTintColor: '#007AFF',
         tabBarInactiveTintColor: 'gray',
       })}
     >
@@ -47,19 +48,23 @@ function BottomTabs() {
 export default function AppNavigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Welcome">
-        <Stack.Screen
-          name="Welcome"
-          component={WelcomeScreen}
-          options={{ headerShown: false }}
-        />
+      <Stack.Navigator>
         <Stack.Screen
           name="MainTabs"
           component={BottomTabs}
           options={{ headerShown: false }}
         />
 
-        <Stack.Screen name="Providers" component={ProvidersScreen} />
+        <Stack.Screen 
+          name="Providers" 
+          component={ProvidersScreen} 
+          options={{ 
+            headerShown: true,
+            title: "Service Providers",
+            headerStyle: { backgroundColor: '#f8f9fa' },
+            headerTintColor: '#2c3e50'
+          }} 
+        />
         <Stack.Screen name="BookingForm" component={BookingForm} />
       </Stack.Navigator>
     </NavigationContainer>
