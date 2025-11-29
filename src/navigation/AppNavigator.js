@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
+import WelcomeScreen from "../modules/welcome/WelcomeScreen";
 import CategoriesScreen from "../modules/categories/CategoriesScreen";
 import ProvidersScreen from "../modules/providers/ProvidersScreen";
 import BookingForm from "../modules/booking/BookingForm";
@@ -48,7 +49,12 @@ function BottomTabs() {
 export default function AppNavigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Welcome">
+        <Stack.Screen
+          name="Welcome"
+          component={WelcomeScreen}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="MainTabs"
           component={BottomTabs}
