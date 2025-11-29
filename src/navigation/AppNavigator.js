@@ -55,7 +55,16 @@ export default function AppNavigator() {
           options={{ headerShown: false }}
         />
 
-        <Stack.Screen name="Providers" component={ProvidersScreen} />
+        <Stack.Screen 
+          name="Providers" 
+          component={ProvidersScreen} 
+          options={{ 
+            headerShown: true,
+            title: "Service Providers",
+            headerStyle: { backgroundColor: '#f8f9fa' },
+            headerTintColor: '#2c3e50'
+          }} 
+        />
         <Stack.Screen name="BookingForm" component={BookingForm} />
       </Stack.Navigator>
     </NavigationContainer>
