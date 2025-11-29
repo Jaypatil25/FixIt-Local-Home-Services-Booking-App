@@ -1,34 +1,62 @@
 import { useEffect, useState } from "react";
 import { View, Text, StyleSheet, SafeAreaView, FlatList } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { providers } from "../../data/providers";
 import ProviderCard from "../providers/ProviderCard";
 
 export default function FavoritesScreen({ navigation }) {
-  const [favorites, setFavorites] = useState([]);
+  const [favoriteIds, setFavoriteIds] = useState([]);
+  const [favoriteProviders, setFavoriteProviders] = useState([]);
 
   useEffect(() => {
     loadFavorites();
-  }, []);
+    const unsubscribe = navigation.addListener('focus', () => {
+      loadFavorites();
+    });
+    return unsubscribe;
+  }, [navigation]);
 
-  const loadFavorites = () => {
-    const favProviders = providers.filter(p => p.fav);
-    setFavorites(favProviders);
+  const loadFavorites = async () => {
+    try {
+      const stored = await AsyncStorage.getItem("fixit_favorites");
+      const ids = stored ? JSON.parse(stored) : [];
+      setFavoriteIds(ids);
+      
+      const favProviders = providers.filter(p => ids.includes(p.id));
+      setFavoriteProviders(favProviders);
+    } catch (error) {
+      console.log("Error loading favorites:", error);
+    }
   };
 
   const handleBook = (provider) => {
     navigation.navigate("BookingForm", { provider });
   };
 
-  const toggleFavorite = (providerId) => {
-    // In a real app, this would update the provider's favorite status
-    console.log("Toggle favorite for provider:", providerId);
+  const toggleFavorite = async (providerId) => {
+    try {
+      let updatedFavorites;
+      if (favoriteIds.includes(providerId)) {
+        updatedFavorites = favoriteIds.filter(id => id !== providerId);
+      } else {
+        updatedFavorites = [...favoriteIds, providerId];
+      }
+      
+      setFavoriteIds(updatedFavorites);
+      await AsyncStorage.setItem("fixit_favorites", JSON.stringify(updatedFavorites));
+      
+      const favProviders = providers.filter(p => updatedFavorites.includes(p.id));
+      setFavoriteProviders(favProviders);
+    } catch (error) {
+      console.log("Error saving favorites:", error);
+    }
   };
 
     return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Favorite Providers</Text>
       
-      {favorites.length === 0 ? (
+      {favoriteProviders.length === 0 ? (
         <View style={styles.emptyState}>
           <Text style={styles.emptyText}>No favorites yet</Text>
           <Text style={styles.emptySubtext}>
@@ -37,13 +65,13 @@ export default function FavoritesScreen({ navigation }) {
         </View>
       ) : (
         <>
-          <Text style={styles.subtitle}>{favorites.length} favorite providers</Text>
+          <Text style={styles.subtitle}>{favoriteProviders.length} favorite providers</Text>
           <FlatList
-            data={favorites}
+            data={favoriteProviders}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
               <ProviderCard
-                item={item}
+                item={{...item, fav: favoriteIds.includes(item.id)}}
                 onBook={() => handleBook(item)}
                 onFav={() => toggleFavorite(item.id)}
               />
