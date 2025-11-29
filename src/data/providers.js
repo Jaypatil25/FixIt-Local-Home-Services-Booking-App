@@ -27,10 +27,19 @@ export const providers = [
     image: "https://via.placeholder.com/100",
     description: "Drain cleaning and pipe installation"
   },
+  {
+    id: 4,
+    name: "PipeFix Express",
+    category: "Plumbing",
+    rating: 4.5,
+    price: 400,
+    image: "https://via.placeholder.com/100",
+    description: "Quick pipe repairs and fittings"
+  },
   
   // Electrical Services
   {
-    id: 4,
+    id: 5,
     name: "ElectroFix",
     category: "Electrical",
     rating: 4.6,
@@ -39,7 +48,7 @@ export const providers = [
     description: "Certified electrical repairs"
   },
   {
-    id: 5,
+    id: 6,
     name: "PowerTech Services",
     category: "Electrical",
     rating: 4.8,
@@ -48,7 +57,7 @@ export const providers = [
     description: "Wiring and electrical installations"
   },
   {
-    id: 6,
+    id: 7,
     name: "Spark Electric",
     category: "Electrical",
     rating: 4.5,
@@ -56,10 +65,19 @@ export const providers = [
     image: "https://via.placeholder.com/100",
     description: "Home electrical maintenance"
   },
+  {
+    id: 8,
+    name: "VoltMaster Pro",
+    category: "Electrical",
+    rating: 4.7,
+    price: 420,
+    image: "https://via.placeholder.com/100",
+    description: "Smart home electrical solutions"
+  },
   
   // Cleaning Services
   {
-    id: 7,
+    id: 9,
     name: "CleanPro",
     category: "Cleaning",
     rating: 4.9,
@@ -68,7 +86,7 @@ export const providers = [
     description: "Deep cleaning services"
   },
   {
-    id: 8,
+    id: 10,
     name: "SparkleClean",
     category: "Cleaning",
     rating: 4.7,
@@ -77,7 +95,7 @@ export const providers = [
     description: "Regular house cleaning"
   },
   {
-    id: 9,
+    id: 11,
     name: "EcoClean Solutions",
     category: "Cleaning",
     rating: 4.8,
@@ -85,62 +103,51 @@ export const providers = [
     image: "https://via.placeholder.com/100",
     description: "Eco-friendly cleaning products"
   },
-  
-  // AC Repair Services
-  {
-    id: 10,
-    name: "AC Masters",
-    category: "AC Repair",
-    rating: 4.7,
-    price: 600,
-    image: "https://via.placeholder.com/100",
-    description: "AC installation and repair"
-  },
-  {
-    id: 11,
-    name: "CoolAir Experts",
-    category: "AC Repair",
-    rating: 4.6,
-    price: 550,
-    image: "https://via.placeholder.com/100",
-    description: "AC servicing and maintenance"
-  },
   {
     id: 12,
-    name: "ChillTech Services",
-    category: "AC Repair",
-    rating: 4.8,
-    price: 650,
+    name: "FreshStart Cleaners",
+    category: "Cleaning",
+    rating: 4.6,
+    price: 280,
     image: "https://via.placeholder.com/100",
-    description: "Split and window AC specialists"
+    description: "Move-in/move-out cleaning specialists"
   },
   
-  // Painting Services
+  // Appliance Repair Services
   {
     id: 13,
-    name: "PaintPro",
-    category: "Painting",
-    rating: 4.5,
-    price: 800,
+    name: "ApplianceFix Pro",
+    category: "Appliance Repair",
+    rating: 4.8,
+    price: 600,
     image: "https://via.placeholder.com/100",
-    description: "Interior and exterior painting"
+    description: "All home appliance repairs"
   },
   {
     id: 14,
-    name: "ColorCraft Painters",
-    category: "Painting",
+    name: "TechRepair Masters",
+    category: "Appliance Repair",
     rating: 4.7,
-    price: 750,
+    price: 550,
     image: "https://via.placeholder.com/100",
-    description: "Premium wall painting services"
+    description: "Washing machine & refrigerator experts"
   },
   {
     id: 15,
-    name: "BrushMaster Pro",
-    category: "Painting",
+    name: "HomeAppliance Care",
+    category: "Appliance Repair",
     rating: 4.6,
-    price: 700,
+    price: 500,
     image: "https://via.placeholder.com/100",
-    description: "Texture and decorative painting"
+    description: "Microwave, dishwasher & oven repairs"
+  },
+  {
+    id: 16,
+    name: "QuickFix Appliances",
+    category: "Appliance Repair",
+    rating: 4.5,
+    price: 450,
+    image: "https://via.placeholder.com/100",
+    description: "Same-day appliance repair service"
   }
 ];
